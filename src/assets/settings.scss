@@ -1,6 +1,10 @@
 // Цвета
 $White                    :       #ffffff;
 $Black                    :       #000000;
+$Main                     :       #1A4B93;
+$Second                   :       #4A6DD0;
+$Third                    :       #727378;
+$Support                  :       #e7e7e7;
 
 // Размеры экранов
 $DesktopWidth             :       1200px;
@@ -62,6 +66,5 @@ body {
   }
 }
 a {
-  // text-decoration: none
-  color: white;
+  text-decoration: none
 }
