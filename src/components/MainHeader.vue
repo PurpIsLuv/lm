@@ -4,7 +4,7 @@
       img.logo-icon(src="@/assets/logo/logo.svg")
       p.logo-name Лидеры
         br
-        span Управления
+        span.logo-name_span Управления
     .right
       .top
         .contacts
@@ -22,32 +22,36 @@
       .bottom
         nav.menu
           ul
-            li
-              router-link(to="/") Главная
-            li
-              router-link(to="/about") О проекте
-            li
-              router-link(to="/about") Создать проект
-            li
-              router-link(to="/about") Партнерам
-            li
-              router-link(to="/about") Участникам
-            li
-              router-link(to="/about") Проекты
-            li
-              router-link(to="/about") Контакты
+            li.menu-li(v-for="page in pages")
+              router-link.menu-link(:to="page.link") {{ page.title }}
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      pages: [
+        { link: "/", title: "Главная" },
+        { link: "/about", title: "О проекте" },
+        { link: "/create", title: "Создать проект" },
+        { link: "/partners", title: "Партнерам" },
+        { link: "/clients", title: "Участникам" },
+        { link: "/projects", title: "Проекты" },
+        { link: "/contacts", title: "Контакты" }
+      ]
+    };
+  }
+};
 </script>
 
 <style lang="scss" scoped>
+// Header
 .header {
   display: flex;
   align-items: center;
   padding: 10px 0;
 }
+// Logo
 .logo {
   display: flex;
   align-items: center;
@@ -61,16 +65,18 @@ export default {};
 .logo-name {
   color: $Second;
   margin: 0;
-  span {
-    color: $Main;
-  }
 }
-.right{
+.logo-name_span {
+  color: $Main;
+}
+// Right Header
+.right {
   margin-left: auto;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
 }
+// Right Top Header
 .top {
   display: flex;
   align-items: center;
@@ -112,12 +118,14 @@ export default {};
   font-weight: 450;
   padding: 10px 0;
   min-width: 103px;
-  background: linear-gradient(40deg, #4560FE 7.85%, #50CDF3 145.9%);
+  background: linear-gradient(40deg, #4560fe 7.85%, #50cdf3 145.9%);
   margin-right: 15px;
+  cursor: pointer;
   &:last-child {
     margin-right: 0;
   }
 }
+// Right Bottom Header
 .bottom {
   padding-top: 10px;
   border-top: 1px solid $Support;
@@ -128,13 +136,13 @@ export default {};
   list-style: none;
   padding: 0;
   margin: 0;
-  li {
-    margin-left: 30px;
-    a {
-      font-weight: 450;
-      color: $Main;
-      font-size: 16px;
-    }
-  }
+}
+.menu-li {
+  margin-left: 30px;
+}
+.menu-link {
+  font-weight: 450;
+  color: $Main;
+  font-size: 16px;
 }
 </style>
