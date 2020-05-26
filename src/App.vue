@@ -6,4 +6,8 @@ router-view
 export default {};
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+body {
+	margin: 0;
+}
+</style>

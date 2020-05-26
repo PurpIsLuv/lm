@@ -1,16 +1,16 @@
 // Цвета
-$White                    :       #ffffff
-$Black                    :       #000000
+$White                    :       #ffffff;
+$Black                    :       #000000;
 
 // Размеры экранов
-$DesktopWidth             :       1200px
-$SmDesktopWidth           :       992px
-$TabletWidth              :       768px
-$PhoneWidth               :       576px
+$DesktopWidth             :       1200px;
+$SmDesktopWidth           :       992px;
+$TabletWidth              :       768px;
+$PhoneWidth               :       576px;
 
 // Миксины
 
-=afs($First, $Second, $Third)
+=afs($First, $Second, $Third) {
 
   //Использование:
   //
@@ -22,36 +22,40 @@ $PhoneWidth               :       576px
   // Третий - телефон и ниже
 
   @media screen and ( max-width: $TabletWidth )
-    font-size: $Second
+    font-size: $Second;
 
   @media screen and ( max-width: $PhoneWidth )
-    font-size: $Third
+    font-size: $Third;
 
   @media screen and ( min-width: $TabletWidth )
-    font-size: $First
-
+    font-size: $First;
+}
 
 // Глобальные стили
-body
-  padding: 0
-  margin: 0
+body {
+  padding: 0;
+  margin: 0;
+}
 
-.container
-  box-sizing: border-box
-  margin: auto
+.container {
+  box-sizing: border-box;
+  margin: auto;
 
   @media screen and ( max-width: $TabletWidth )
-    width: 100%
-    margin: 0
+    width: 100%;
+    margin: 0;
 
   @media screen and ( min-width: $TabletWidth )
-    width: 750px
+    width: 750px;
 
   @media screen and ( min-width: $SmDesktopWidth )
-    width: 970px
+    width: 970px;
 
   @media screen and ( min-width: $DesktopWidth )
-    width: 1140px
-    
-a
-  text-decoration: none
+    width: 1140px;
+}
+
+a {
+  // text-decoration: none
+  color: white
+}
