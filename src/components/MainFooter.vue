@@ -2,22 +2,40 @@
   .Footer
     .container
       .row.main
-        FooterItem(:logoItem='true')
-        FooterItem(v-for="(item, index) of footerItem" :key="index" :title='item.title', :subtitles='item.subtitles')
-        FooterItem(:emailItem='true' @inputValue="updInputValue")
+        .Footer-item
+          img(src='@/assets/image/Footer/Logo.svg' class='title__img')
+          .subtitle
+            | Автоинформатор:
+            br
+            | +7 (495) 181-05-05
 
+        footer-item(v-for="(item, index) of footerItem" 
+                    :key="index" 
+                    :title='item.title' 
+                    :subtitles='item.subtitles')
+
+        .Footer-item
+          .title Подпишитесь на наши рассылку:
+          label(class='subtitle-message')
+            img(src='@/assets/image/Footer/Message.svg')
+            input(type='text' 
+                  placeholder='Укажите свой email' 
+                  class='subtitle-message__input')
       .row
         .license @ 2020 Все права защищены
         .links
-          a(href='#' v-for="(item, index) of links" :key="index")
-            img(:src='"@/" + defaultImgPath + item.name + ".svg"')
+          a(href='#' 
+            class='links__a'
+            v-for="(item, index) of links" 
+            :key="index")
+            img(:src='"@/" + defaultImgPath + item.name + ".svg"' class='links__img')
 </template>
 
 <script>
 import FooterItem from "./FooterItem";
 export default {
   components: {
-    FooterItem
+    "footer-item": FooterItem
   },
   name: "MainFooter",
   data() {
@@ -56,31 +74,11 @@ export default {
         }
       ]
     };
-  },
-  methods: {
-    updInputValue: function(value) {
-      return value;
-    }
   }
 };
 </script>
 
 <style lang="scss" scoped>
-@import "../assets/settings.scss";
-
-@mixin titleFont {
-  color: $FooterSilverDark;
-  font-weight: 300;
-  @include afs(16px, 14px, 12px);
-  line-height: 21px;
-}
-@mixin containerWrap($maxWidth) {
-  @if ($maxWidth == $DesktopWidth) {
-    justify-content: space-between;
-  } @else if ($maxWidth >= $PhoneWidth) and ($maxWidth <= $SmDesktopWidth) {
-    justify-content: space-around;
-  }
-}
 @mixin main($maxWidth) {
   .Footer {
     font-family: Futura PT;
@@ -94,13 +92,53 @@ export default {
   .row {
     display: flex;
     flex-wrap: wrap;
-    @include containerWrap($maxWidth);
+    @if ($maxWidth == $DesktopWidth) {
+      justify-content: space-between;
+    } @else if ($maxWidth >= $PhoneWidth) and ($maxWidth <= $SmDesktopWidth) {
+      justify-content: space-around;
+    }
     align-items: center;
     margin: 0.3rem 0;
     max-width: 1170px;
   }
   .main {
     border-bottom: solid 0.1rem $FooterSilverWhite;
+  }
+  .Footer-item {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem 0.5rem;
+  }
+  .title {
+    font-family: Gotham Pro;
+    @include afs(18px, 16px, 14px);
+    line-height: 17px;
+    color: $FooterBlue;
+    margin-bottom: 14px;
+  }
+  .subtitle {
+    color: $FooterSilverDark;
+    font-weight: 300;
+    @include afs(16px, 14px, 12px);
+    line-height: 21px;
+  }
+  .subtitle-message {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1rem;
+    border: 0.1rem solid $FooterSilver;
+    border-radius: 2px;
+    cursor: pointer;
+    .subtitle-message__input {
+      height: 49px;
+      border: none;
+      width: 120px;
+      cursor: pointer;
+    }
+    .subtitle-message__input:focus {
+      outline: none;
+    }
   }
   .license {
     font-family: Gotham Pro;
@@ -111,12 +149,12 @@ export default {
     display: flex;
     justify-content: space-between;
     width: 155px;
-    a {
+    .links__a {
       display: flex;
       justify-content: center;
       align-items: center;
     }
-    img {
+    .links__img {
       width: 20px;
     }
   }
