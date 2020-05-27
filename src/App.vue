@@ -3,5 +3,6 @@ router-view
 </template>
 
 <style lang="scss">
-@import "./assets/futura/stylesheet.css";
+@import "./assets/fonts/futura/stylesheet.css";
+@import "./assets/fonts/gotham/stylesheet.css";
 </style>

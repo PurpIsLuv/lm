@@ -28,9 +28,11 @@
       .row
         .license @ 2020 Все права защищены
         .links
-          a.links__a(href='#' 
+          a.links__a(
+            href='#' 
             v-for="(item, index) of links" 
-            :key="index")
+            :key="index"
+          )
             img.links__img(
               :src='"@/" + defaultImgPath + item.name + ".svg"'
             )
@@ -40,7 +42,7 @@
 import FooterItem from "./FooterItem";
 export default {
   components: {
-    "footer-item": FooterItem
+    FooterItem
   },
   name: "MainFooter",
   data() {
