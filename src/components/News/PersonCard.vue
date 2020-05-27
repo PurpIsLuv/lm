@@ -2,7 +2,14 @@
   .PersonCard
     .row
       .btn(ref='cardButton')
-        img(src='@/assets/image/News/Plus.svg')
+        img(
+          v-if="personCardData.isSubscribe"
+          src='@/assets/image/News/Cross.svg'
+        )
+        img(
+          v-else
+          src='@/assets/image/News/Plus.svg'
+        )
     .row
       .title {{ personCardData.title }}
     .row
@@ -20,6 +27,9 @@ export default {
     personCardData: Object
   },
   methods: {
+    /**
+     *  Стилизация кнопки подписаться
+     */
     stylizeSubscribeButton: function() {
       this.personCardData.isSubscribe
         ? this.$refs.cardButton.classList.add("subscribe")

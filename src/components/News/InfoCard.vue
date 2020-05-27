@@ -2,7 +2,9 @@
   .InfoCard
     .row
       .title
-        img.title__img(src='@/assets/image/News/card-1.png')
+        img.title__img(
+          :src='require("@/assets/image/News/" + infoCardData.imgName)'
+        )
     .row
       .subtitle {{ infoCardData.subtitle }} 
       a.connect(href='#')
