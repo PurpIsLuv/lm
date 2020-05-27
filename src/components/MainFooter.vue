@@ -3,32 +3,37 @@
     .container
       .row.main
         .Footer-item
-          img(src='@/assets/image/Footer/Logo.svg' class='title__img')
+          img.title__img(src='@/assets/image/Footer/Logo.svg')
           .subtitle
             | Автоинформатор:
             br
             | +7 (495) 181-05-05
 
-        footer-item(v-for="(item, index) of footerItem" 
-                    :key="index" 
-                    :title='item.title' 
-                    :subtitles='item.subtitles')
+        footer-item(
+          v-for="(item, index) of footerItem" 
+          :key="index" 
+          :title='item.title' 
+          :subtitles='item.subtitles'
+        )
 
         .Footer-item
           .title Подпишитесь на наши рассылку:
-          label(class='subtitle-message')
+          label.subtitle-message
             img(src='@/assets/image/Footer/Message.svg')
-            input(type='text' 
-                  placeholder='Укажите свой email' 
-                  class='subtitle-message__input')
+            input.subtitle-message__input(
+              type='text' 
+              placeholder='Укажите свой email'
+              v-model="inputValue"
+            )
       .row
         .license @ 2020 Все права защищены
         .links
-          a(href='#' 
-            class='links__a'
+          a.links__a(href='#' 
             v-for="(item, index) of links" 
             :key="index")
-            img(:src='"@/" + defaultImgPath + item.name + ".svg"' class='links__img')
+            img.links__img(
+              :src='"@/" + defaultImgPath + item.name + ".svg"'
+            )
 </template>
 
 <script>
@@ -72,7 +77,8 @@ export default {
             { link: "#", subtitle: "Задать вопрос" }
           ]
         }
-      ]
+      ],
+      inputValue: ""
     };
   }
 };

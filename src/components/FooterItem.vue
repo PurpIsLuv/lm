@@ -3,7 +3,7 @@
     .title {{ title }} 
     .subtitle(v-for="(item, index) of subtitles" 
     :key="index") 
-      a(:href='item.link' class='subtitle__a') {{ item.subtitle }}
+      a.subtitle__a(:href='item.link') {{ item.subtitle }}
 </template>
 
 <script>
