@@ -3,10 +3,10 @@
     .row
       .title
         img.title__img(
-          :src='require("@/assets/image/News/" + infoCardData.imgName)'
+          :src='require("@/assets/image/News/" + imgName)'
         )
     .row
-      .subtitle {{ infoCardData.subtitle }} 
+      .subtitle {{ subtitle }} 
       a.connect(href='#')
         img(src='@/assets/image/News/Link.svg')
 </template>
@@ -15,19 +15,13 @@
 export default {
   name: "InfoCard",
   props: {
-    infoCardData: Object
-  },
-  data() {
-    return {
-      defaultImgPath: "assets/image/News/"
-    };
+    imgName: String,
+    subtitle: String
   }
 };
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/settings.scss";
-
 @mixin main($maxWidth) {
   .InfoCard {
     margin: 3rem 0;

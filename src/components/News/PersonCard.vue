@@ -1,9 +1,11 @@
 <template lang="pug">
   .PersonCard
     .row
-      .btn(ref='cardButton')
+      .btn(
+        :class="{ subscribe:isSubscribe, unsubscribe:!isSubscribe }"
+      )
         img(
-          v-if="personCardData.isSubscribe"
+          v-if="isSubscribe"
           src='@/assets/image/News/Cross.svg'
         )
         img(
@@ -11,11 +13,11 @@
           src='@/assets/image/News/Plus.svg'
         )
     .row
-      .title {{ personCardData.title }}
+      .title {{ title }}
     .row
-      .subtitle {{ personCardData.subtitle }}
+      .subtitle {{ subtitle }}
     .row
-      .date {{ personCardData.date }}
+      .date {{ date }}
       a.connect(href='#')
         img(src='@/assets/image/News/Link.svg')
 </template>
@@ -24,27 +26,15 @@
 export default {
   name: "PersonCard",
   props: {
-    personCardData: Object
-  },
-  methods: {
-    /**
-     *  Стилизация кнопки подписаться
-     */
-    stylizeSubscribeButton: function() {
-      this.personCardData.isSubscribe
-        ? this.$refs.cardButton.classList.add("subscribe")
-        : this.$refs.cardButton.classList.add("unsubscribe");
-    }
-  },
-  mounted() {
-    this.stylizeSubscribeButton();
+    title: String,
+    subtitle: String,
+    date: String,
+    isSubscribe: Boolean
   }
 };
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/settings.scss";
-
 @mixin main($maxWidth) {
   .PersonCard {
     margin: 3rem 0;

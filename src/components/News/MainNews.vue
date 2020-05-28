@@ -12,10 +12,26 @@
     .News-body
       .container
         .cards
-          person-card(:personCardData="personCards[0]")
-          info-card(:infoCardData="infoCards[0]")
-          person-card(:personCardData="personCards[1]")
-          info-card(:infoCardData="infoCards[1]")
+          person-card(
+            :title="personCards[0].title"
+            :subtitle="personCards[0].subtitle"
+            :date="personCards[0].date"
+            :isSubscribe="personCards[0].isSubscribe"
+          )
+          info-card(
+            :imgName="infoCards[0].imgName"
+            :subtitle="infoCards[0].subtitle"
+          )
+          person-card(
+            :title="personCards[1].title"
+            :subtitle="personCards[1].subtitle"
+            :date="personCards[1].date"
+            :isSubscribe="personCards[1].isSubscribe"
+          )
+          info-card(
+            :imgName="infoCards[1].imgName"
+            :subtitle="infoCards[1].subtitle"
+          )
 </template>
 
 <script>
@@ -64,8 +80,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/settings.scss";
-
 @mixin main($maxWidth) {
   .News {
     display: flex;
