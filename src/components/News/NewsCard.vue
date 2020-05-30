@@ -1,18 +1,28 @@
 <template lang="pug">
-  .Card(
-    @mouseenter="toggleCard" 
-    @mouseleave="toggleCard" 
-  )
-    div(v-if="isCardSide")
+  .Card
+    .frontSide
       .Card-head
-      .Card-body.row
-        .date {{ date }}
-        a.connect(href='#')
-          img(src='@/assets/image/News/Link.svg')
-    div(v-else)
-      .Card-head
+        img.Card__img(
+          :src='require("@/assets/image/News/" + imgName)')
       .Card-body.row
         .subtitle {{ subtitle }} 
+        a.connect(href='#')
+          img(src='@/assets/image/News/Link.svg')
+    .backSide
+      .Card-head
+        .row
+          .btn(
+            :class="{ subscribe:isSubscribe, unsubscribe:!isSubscribe }"
+          )
+            img(
+              :src='require(`@/assets/image/News/${btnImgName()}`)'
+            )
+        .row
+          .name {{ title }}
+        .row
+          .info {{ subtitle }}
+      .Card-body.row
+        .date {{ date }}
         a.connect(href='#')
           img(src='@/assets/image/News/Link.svg')
 </template>
@@ -24,25 +34,11 @@ export default {
     subtitle: String,
     date: String,
     isSubscribe: Boolean,
-    imgName: String,
-    isSide: Boolean
-  },
-  data() {
-    return {
-      isCardSide: this.isSide
-    };
+    imgName: String
   },
   methods: {
-    toggleCard: function() {
-      this.isCardSide ? (this.isCardSide = false) : (this.isCardSide = true);
-      /**
-       * hover event
-       */
-    },
-    btnImgPath: function() {
-      return `@/assets/image/News/${
-        this.isSubscribe == true ? "Cross.svg" : "Plus.svg"
-      }`;
+    btnImgName: function() {
+      return this.isSubscribe == true ? "Cross.svg" : "Plus.svg";
     }
   }
 };
@@ -59,7 +55,22 @@ export default {
     box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.1);
     font-family: Futura PT;
     font-style: normal;
+    overflow: hidden;
     cursor: default;
+  }
+  .Card .frontSide {
+    display: block;
+    animation: Card-animate 0.3s;
+  }
+  .Card .backSide {
+    display: none;
+  }
+  .Card:hover .frontSide {
+    display: none;
+  }
+  .Card:hover .backSide {
+    display: block;
+    animation: Card-animate 0.3s;
   }
   .row {
     display: flex;
@@ -117,6 +128,7 @@ export default {
     @include afs(12px, 10px, 8px);
     font-weight: 450;
     line-height: 15px;
+    color: $SilverFifth;
   }
   .subtitle {
     @include afs(14px, 12px, 10px);
@@ -130,6 +142,15 @@ export default {
     justify-content: center;
     align-items: center;
     margin-left: auto;
+  }
+}
+
+@keyframes Card-animate {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }
 
