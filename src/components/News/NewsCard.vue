@@ -1,54 +1,75 @@
 <template lang="pug">
-  .PersonCard
-    .row
-      .btn(
-        :class="{ subscribe:isSubscribe, unsubscribe:!isSubscribe }"
-      )
-        img(
-          v-if="isSubscribe"
-          src='@/assets/image/News/Cross.svg'
-        )
-        img(
-          v-else
-          src='@/assets/image/News/Plus.svg'
-        )
-    .row
-      .title {{ title }}
-    .row
-      .subtitle {{ subtitle }}
-    .row
-      .date {{ date }}
-      a.connect(href='#')
-        img(src='@/assets/image/News/Link.svg')
+  .Card(
+    @mouseenter="toggleCard" 
+    @mouseleave="toggleCard" 
+  )
+    div(v-if="isCardSide")
+      .Card-head
+      .Card-body.row
+        .date {{ date }}
+        a.connect(href='#')
+          img(src='@/assets/image/News/Link.svg')
+    div(v-else)
+      .Card-head
+      .Card-body.row
+        .subtitle {{ subtitle }} 
+        a.connect(href='#')
+          img(src='@/assets/image/News/Link.svg')
 </template>
 
 <script>
 export default {
-  name: "PersonCard",
   props: {
     title: String,
     subtitle: String,
     date: String,
-    isSubscribe: Boolean
+    isSubscribe: Boolean,
+    imgName: String,
+    isSide: Boolean
+  },
+  data() {
+    return {
+      isCardSide: this.isSide
+    };
+  },
+  methods: {
+    toggleCard: function() {
+      this.isCardSide ? (this.isCardSide = false) : (this.isCardSide = true);
+      /**
+       * hover event
+       */
+    },
+    btnImgPath: function() {
+      return `@/assets/image/News/${
+        this.isSubscribe == true ? "Cross.svg" : "Plus.svg"
+      }`;
+    }
   }
 };
 </script>
 
 <style lang="scss" scoped>
 @mixin main($maxWidth) {
-  .PersonCard {
+  .Card {
     margin: 3rem 0;
     width: 270px;
     height: 360px;
-    background-color: $White;
     border-radius: 3px;
+    background-color: $White;
     box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.1);
     font-family: Futura PT;
     font-style: normal;
+    cursor: default;
   }
   .row {
     display: flex;
     align-items: center;
+  }
+  .Card-head {
+    height: 268px;
+  }
+  .Card__img {
+    overflow: hidden;
   }
   .btn {
     display: flex;
@@ -70,14 +91,14 @@ export default {
       $AquaFirst 150.1%
     );
   }
-  .title {
+  .name {
     margin: 1.5rem auto;
     @include afs(18px, 16px, 14px);
     font-weight: 450;
     line-height: 23px;
     color: $Main;
   }
-  .subtitle {
+  .info {
     margin: 0 auto;
     @include afs(14px, 12px, 10px);
     width: 174px;
@@ -88,17 +109,26 @@ export default {
     text-align: center;
     overflow: hidden;
   }
+  .Card-body {
+    height: 92px;
+    margin: 0 1rem;
+  }
   .date {
     @include afs(12px, 10px, 8px);
     font-weight: 450;
     line-height: 15px;
-    margin: 1rem;
+  }
+  .subtitle {
+    @include afs(14px, 12px, 10px);
+    width: 207px;
+    height: 54px;
+    color: $SilverThird;
+    overflow: hidden;
   }
   .connect {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 1rem;
     margin-left: auto;
   }
 }
