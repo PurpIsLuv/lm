@@ -7,7 +7,13 @@
 
 <script>
 export default {
-  props: ["slideId"],
+  props: {
+    slideId: {
+      type: Number,
+      required: true,
+      default: 1
+    }
+  },
   data() {
     return {
       slides: [
@@ -16,15 +22,15 @@ export default {
           image: require("@/assets/image/MainSlider/slide-1.png")
         },
         {
-          title: "Стань инвестром и помоги\n в развитии интересных проектов!",
+          title: "Стань инвестром и помоги в развитии интересных проектов!",
           image: require("@/assets/image/MainSlider/slide-2.png")
         },
         {
-          title: "Стань разработчиком -\n присоеденись к успешной команде!",
+          title: "Стань разработчиком - присоеденись к успешной команде!",
           image: require("@/assets/image/MainSlider/slide-3.png")
         },
         {
-          title: "Размести свое предложение\n и получи поддержку и результат!",
+          title: "Размести свое предложение и получи поддержку и результат!",
           image: require("@/assets/image/MainSlider/slide-4.png")
         }
       ]

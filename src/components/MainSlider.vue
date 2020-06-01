@@ -31,7 +31,7 @@
         button.control_btn(v-for="btn in 4" @click="changeSlide(btn-1)" :class="{ active: slideId === btn-1}") {{ `0${btn}` }}
         button.control_btn.next_arrow(@click="nextSlide")
           img(src="@/assets/svg/slide-arrow.svg" alt="")
-      main-slide(:slideId="slideId" @click="changeSlide(btn)") btn
+      main-slide(:slideId="slideId")
 </template>
 
 <script>
