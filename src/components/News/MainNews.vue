@@ -6,25 +6,35 @@
           .title Новости:
           .arrows
             .button.left
-              img(src='@/assets/image/News/Arrow-left.svg')
+              img(
+                src='@/assets/image/News/Arrow-left.svg'
+                alt=''
+              )
             .button.right
-              img(src='@/assets/image/News/Arrow-right.svg')
+              img(
+                src='@/assets/image/News/Arrow-right.svg'
+                alt=''
+              )
     .News-body
       .container
         .cards
           new-card(
+            :index="0"
             :title="cards[0].title"
             :subtitle="cards[0].subtitle"
             :date="cards[0].date"
             :isSubscribe="cards[0].isSubscribe"
             :imgName="cards[0].imgName"
+            @toggleSubscribe="updCardSubscribe"
           )
           new-card(
+            :index="1"
             :title="cards[1].title"
             :subtitle="cards[1].subtitle"
             :date="cards[1].date"
             :isSubscribe="cards[1].isSubscribe"
             :imgName="cards[1].imgName"
+            @toggleSubscribe="updCardSubscribe"
           )
 </template>
 
@@ -57,6 +67,11 @@ export default {
         }
       ]
     };
+  },
+  methods: {
+    updCardSubscribe: function({ index, updIsSubscribe }) {
+      this.cards[index].isSubscribe = updIsSubscribe;
+    }
   }
 };
 </script>

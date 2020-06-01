@@ -3,7 +3,8 @@
     .frontSide
       .Card-head
         img.Card__img(
-          :src='require("@/assets/image/News/" + imgName)')
+          :src='require("@/assets/image/News/" + imgName)'
+        )
       .Card-body.row
         .subtitle {{ subtitle }} 
         a.connect(href='#')
@@ -11,11 +12,13 @@
     .backSide
       .Card-head
         .row
-          .btn(
-            :class="{ subscribe:isSubscribe, unsubscribe:!isSubscribe }"
+          btn.btn(
+            :class="{ subscribe: isSubscribe }"
+            @click="subscribeBtnClick"
           )
-            img(
-              :src='require(`@/assets/image/News/${btnImgName()}`)'
+            img.btn__img(
+              src='@/assets/image/News/Plus.svg'
+              :class="{ subscribe__img: isSubscribe }"
             )
         .row
           .name {{ title }}
@@ -30,6 +33,7 @@
 <script>
 export default {
   props: {
+    index: Number,
     title: String,
     subtitle: String,
     date: String,
@@ -37,8 +41,11 @@ export default {
     imgName: String
   },
   methods: {
-    btnImgName: function() {
-      return this.isSubscribe == true ? "Cross.svg" : "Plus.svg";
+    subscribeBtnClick: function() {
+      this.$emit("toggleSubscribe", {
+        index: this.index,
+        updIsSubscribe: !this.isSubscribe
+      });
     }
   }
 };
@@ -91,16 +98,22 @@ export default {
     height: 34px;
     border-radius: 3px;
     cursor: pointer;
-  }
-  .subscribe {
-    background-color: $SilverFourth;
-  }
-  .unsubscribe {
     background: linear-gradient(
       59.09deg,
       $BlueSecond 18.91%,
       $AquaFirst 150.1%
     );
+  }
+  .subscribe {
+    background: $SilverFourth;
+  }
+  .btn__img {
+    transform: rotate(0deg);
+    transition: 0.3s;
+  }
+  .subscribe__img {
+    transform: rotate(45deg);
+    transition: 0.3s;
   }
   .name {
     margin: 1.5rem auto;
