@@ -8,10 +8,13 @@ $FooterSilverDark         :       #656565;
 $FooterSilverWhite        :       #F2F2F2;
 $FooterBlue               :       #1a2f5a;
 
+// Header
 $Main                     :       #1A4B93;
 $Second                   :       #4A6DD0;
 $Third                    :       #727378;
 $Support                  :       #e7e7e7;
+// Main
+$SliderBtn                :       #B0CAFF;
 
 
 // Размеры экранов
@@ -52,6 +55,7 @@ body {
   padding: 0;
   margin: 0;
   font-family: 'Futura PT';
+  overflow-x: hidden;
 }
 .container {
   box-sizing: border-box;
