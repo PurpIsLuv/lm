@@ -29,16 +29,16 @@ export default {
     font-family: Gotham Pro;
     @include afs(18px, 16px, 14px);
     line-height: 17px;
-    color: $FooterBlue;
+    color: $BlueFirst;
     margin-bottom: 14px;
   }
   .subtitle {
-    color: $FooterSilverDark;
+    color: $SilverThird;
     font-weight: 300;
     @include afs(16px, 14px, 12px);
     line-height: 21px;
     .subtitle__a {
-      color: $FooterSilverDark;
+      color: $SilverThird;
       font-weight: 300;
       @include afs(16px, 14px, 12px);
       line-height: 21px;

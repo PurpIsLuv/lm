@@ -110,7 +110,7 @@ export default {
     max-width: 1170px;
   }
   .main {
-    border-bottom: solid 0.1rem $FooterSilverWhite;
+    border-bottom: solid 0.1rem $WhiteFirst;
   }
   .Footer-item {
     display: flex;
@@ -121,11 +121,11 @@ export default {
     font-family: Gotham Pro;
     @include afs(18px, 16px, 14px);
     line-height: 17px;
-    color: $FooterBlue;
+    color: $BlueFirst;
     margin-bottom: 14px;
   }
   .subtitle {
-    color: $FooterSilverDark;
+    color: $SilverThird;
     font-weight: 300;
     @include afs(16px, 14px, 12px);
     line-height: 21px;
@@ -135,7 +135,7 @@ export default {
     justify-content: space-between;
     align-items: center;
     padding: 0 1rem;
-    border: 0.1rem solid $FooterSilver;
+    border: 0.1rem solid $SilverFirst;
     border-radius: 2px;
     cursor: pointer;
     .subtitle-message__input {
@@ -151,7 +151,7 @@ export default {
   .license {
     font-family: Gotham Pro;
     @include afs(14px, 12px, 10px);
-    color: $FooterSilverDark;
+    color: $SilverThird;
   }
   .links {
     display: flex;
