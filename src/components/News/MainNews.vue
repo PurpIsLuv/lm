@@ -69,8 +69,8 @@ export default {
     };
   },
   methods: {
-    updCardSubscribe: function({ index, updIsSubscribe }) {
-      this.cards[index].isSubscribe = updIsSubscribe;
+    updCardSubscribe: function(index) {
+      this.cards[index].isSubscribe = !this.cards[index].isSubscribe;
     }
   }
 };

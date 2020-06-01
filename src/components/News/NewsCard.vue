@@ -42,10 +42,7 @@ export default {
   },
   methods: {
     subscribeBtnClick: function() {
-      this.$emit("toggleSubscribe", {
-        index: this.index,
-        updIsSubscribe: !this.isSubscribe
-      });
+      this.$emit("toggleSubscribe", this.index);
     }
   }
 };
