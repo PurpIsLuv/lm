@@ -12,7 +12,7 @@
     .backSide
       .Card-head
         .row
-          btn.btn(
+          button.btn(
             :class="{ subscribe: isSubscribe }"
             @click="subscribeBtnClick"
           )
@@ -41,7 +41,7 @@ export default {
     imgName: String
   },
   methods: {
-    subscribeBtnClick: function() {
+    subscribeBtnClick() {
       this.$emit("toggleSubscribe", this.index);
     }
   }
@@ -93,6 +93,7 @@ export default {
     margin-left: auto;
     width: 34px;
     height: 34px;
+    border: none;
     border-radius: 3px;
     cursor: pointer;
     background: linear-gradient(
@@ -100,6 +101,9 @@ export default {
       $BlueSecond 18.91%,
       $AquaFirst 150.1%
     );
+  }
+  .btn:focus {
+    outline: none;
   }
   .subscribe {
     background: $SilverFourth;

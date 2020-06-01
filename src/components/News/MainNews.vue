@@ -69,7 +69,7 @@ export default {
     };
   },
   methods: {
-    updCardSubscribe: function(index) {
+    updCardSubscribe(index) {
       this.cards[index].isSubscribe = !this.cards[index].isSubscribe;
     }
   }
