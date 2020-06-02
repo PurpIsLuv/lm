@@ -4,6 +4,7 @@
       .bg
         img(
           src='@/assets/image/ProjectCard/bg.png'
+          alt=''
         )
       .row
         a.title(href='#') {{ title }}
@@ -15,11 +16,15 @@
             v-for="(item, index) of countrys" :key="index"
           )
             img.lang-item__img(
-              :src='require(`@/assets/image/ProjectCard/country/${item}.svg`)'
+              :src='require(`@/assets/image/ProjectCard/country/${item}.png`)'
+              alt=''
             )
         ul.lang(v-else)
           li.lang-item
-            img.lang-item__img(src='@/assets/image/ProjectCard/country/Int.svg')
+            img.lang-item__img(
+              src='@/assets/image/ProjectCard/country/Int.png'
+              alt=''
+            )
             span.lang-item__span &#10008; {{ countrys.length }}
         button.btn Перейти к проекту
     .MainProjectCard-body
@@ -33,13 +38,16 @@
         .total 
           | Необходимые средства:
           br
-          .price {{ total }} &#x20bd;
+          .price {{ total | rubFormatter }}
         .sum
           | До запуска проекта осталось:
           br
-          .price {{ total - sum }} &#x20bd; ({{ 100 - (100 * sum / total) }}%)
+          .price {{ (total - sum) | rubFormatter }}  {{ percentLeft }}
     .MainProjectCard-graphic
-      img(src='../assets/image/ProjectCard/graphic.png')
+      img(
+        src='../assets/image/ProjectCard/graphic.png'
+        alt=''
+      )
 </template>
 
 <script>
@@ -52,9 +60,28 @@ export default {
       info:
         "Мы ищем поддержки в решении целого пласта проблем здравоохранения. Ведь это нужно каждому из нас. «Коллектив врачей и программистов». Мы ищем поддержки в решении целого пласта проблем здравоохранения. Ведь это нужно каждому из нас. «Коллектив врачей и программистов». Мы ищем поддержки в решении целого пласта проблем здравоохранения.",
       total: 120000,
-      sum: 108000,
+      sum: 35970.2323,
       countrys: ["Rus", "Isl"]
     };
+  },
+  filters: {
+    rubFormatter(number) {
+      const formatter = new Intl.NumberFormat("ru-RU", {
+        style: "currency",
+        currency: "RUB",
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0
+      });
+      return formatter.format(number);
+    }
+  },
+  computed: {
+    /**
+     * Процентное отношение остатка для полного сбора на проект
+     */
+    percentLeft() {
+      return `(${(100 - (100 * this.sum) / this.total).toFixed(2)}%)`;
+    }
   },
   methods: {
     /**
