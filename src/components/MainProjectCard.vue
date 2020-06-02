@@ -10,13 +10,17 @@
       .row
         .subtitle {{ subtitle }}
       .row
-        ul.lang
+        ul.lang(v-if="countrys.length <= 2")
+          li.lang-item(
+            v-for="(item, index) of countrys" :key="index"
+          )
+            img.lang-item__img(
+              :src='require(`@/assets/image/ProjectCard/country/${item}.svg`)'
+            )
+        ul.lang(v-else)
           li.lang-item
-            button.lang-item__btn
-              img.lang-item__img(src='@/assets/image/ProjectCard/lang/Rus.svg')
-          li.lang-item
-            button.lang-item__btn
-              img.lang-item__img(src='@/assets/image/ProjectCard/lang/Isl.svg')
+            img.lang-item__img(src='@/assets/image/ProjectCard/country/Int.svg')
+            span.lang-item__span &#10008; {{ countrys.length }}
         button.btn Перейти к проекту
     .MainProjectCard-body
       .row
@@ -34,6 +38,8 @@
           | До запуска проекта осталось:
           br
           .price {{ total - sum }} &#x20bd; ({{ 100 - (100 * sum / total) }}%)
+    .MainProjectCard-graphic
+      img(src='../assets/image/ProjectCard/graphic.png')
 </template>
 
 <script>
@@ -46,7 +52,8 @@ export default {
       info:
         "Мы ищем поддержки в решении целого пласта проблем здравоохранения. Ведь это нужно каждому из нас. «Коллектив врачей и программистов». Мы ищем поддержки в решении целого пласта проблем здравоохранения. Ведь это нужно каждому из нас. «Коллектив врачей и программистов». Мы ищем поддержки в решении целого пласта проблем здравоохранения.",
       total: 120000,
-      sum: 108000
+      sum: 108000,
+      countrys: ["Rus", "Isl"]
     };
   },
   methods: {
@@ -74,6 +81,14 @@ export default {
     background-color: $White;
     margin: 20px 50px;
   }
+  .MainProjectCard:hover .MainProjectCard-body,
+  .MainProjectCard:hover .MainProjectCard-footer {
+    display: none;
+  }
+  .MainProjectCard:hover .MainProjectCard-graphic {
+    display: block;
+    animation: Card-animate 0.3s;
+  }
   .bg {
     position: absolute;
     z-index: 0;
@@ -84,6 +99,9 @@ export default {
     margin: 1rem 1rem;
   }
   //MainProjectCard-header
+  .MainProjectCard-header {
+    display: block;
+  }
   .title {
     margin-top: 1rem;
     font-family: Futura PT;
@@ -115,18 +133,18 @@ export default {
     z-index: 1;
   }
   .lang-item {
+    display: flex;
+    align-items: center;
     margin: 0 0.2rem;
-    width: 30px;
-    height: 20px;
   }
-  .lang-item__btn {
-    width: 30px;
-    height: 20px;
-    margin: 0rem;
-    padding: 0rem;
-    border: none;
-    outline: none;
-    cursor: pointer;
+  .lang-item__span {
+    margin: 0 0.3rem;
+    font-family: Futura PT;
+    font-style: normal;
+    font-weight: 600;
+    @include afs(16px, 14px, 12px);
+    line-height: 21px;
+    color: $White;
   }
   .btn {
     margin-top: 2.5rem;
@@ -151,8 +169,10 @@ export default {
   }
   //MainProjectCard-body
   .MainProjectCard-body {
+    display: block;
     padding-top: 0.1rem;
     padding-left: 1rem;
+    animation: Card-animate 0.3s;
   }
   .info {
     width: 480px;
@@ -167,6 +187,7 @@ export default {
   //MainProjectCard-footer
   .MainProjectCard-footer {
     margin: 0 1rem;
+    animation: Card-animate 0.3s;
   }
   .loading {
     width: 510px;
@@ -201,6 +222,21 @@ export default {
     @include afs(16px, 14px, 12px);
     line-height: 21px;
     color: $BlueThird;
+  }
+  .MainProjectCard-graphic {
+    display: none;
+    width: 570px;
+    height: 250px;
+    overflow: hidden;
+  }
+}
+
+@keyframes Card-animate {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }
 
