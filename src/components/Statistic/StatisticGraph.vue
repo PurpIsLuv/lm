@@ -3,19 +3,36 @@
     img.graph_icon(src="@/assets/svg/stat.svg" alt="")
     ul.stat
       li.stat-item
-        span.percent.first-color 58%
+        span.percent.first-color {{ successful }}%
         p.title Успешных проектов
       li.stat-item
-        span.percent.second-color 32%
+        span.percent.second-color {{ unfinish }}%
         p.title Неоконченных проектов
       li.stat-item
-        span.percent.third-color 10%
+        span.percent.third-color {{ fail }}%
         p.title Неудавшихся проектов
 </template>
 
 <script>
 export default {
-  name: 'StatisticGraph'
+  name: 'StatisticGraph',
+  props: {
+    successful: {
+      type: Number,
+      required: true,
+      default: 0
+    },
+    unfinish: {
+      type: Number,
+      required: true,
+      default: 0
+    },
+    fail: {
+      type: Number,
+      required: true,
+      default: 0
+    }
+  }
 };
 </script>
 
