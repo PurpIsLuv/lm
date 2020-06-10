@@ -1,19 +1,34 @@
 <template lang="pug">
   main-layout
     main-slider
+    statistic-card(:bgPosition="'left'"
+                  :successful="58"
+                  :unfinish="32"
+                  :fail="10"
+                  :title="'Мы ценим ваши вложения и многократно преумножаем их.'"
+                  :description="`После того как проект начал выполняться, руководитель должен с определенной частотой предоставлять руководству и заказчику отчеты о ходе проекта. MS Project содержит набор готовых отчетов, которые можно использовать в этих случаях, и предлагает возможности по созданию собственных отчетов.Отчеты удобно использовать и самому руководителю проекта, поскольку с помощью некоторых из них можно получить данные, которые невозможно просмотреть в представлениях. Например, с помощью одного из отчетов.`"
+                  )
+    statistic-card(:bgPosition="'right'"
+                  :successful="80"
+                  :unfinish="12"
+                  :fail="8"
+                  :title="'Мы ценим ваши вложения и многократно преумножаем их.'"
+                  :description="`После того как проект начал выполняться, руководитель должен с определенной частотой предоставлять руководству и заказчику отчеты о ходе проекта. MS Project содержит набор готовых отчетов, которые можно использовать в этих случаях, и предлагает возможности по созданию собственных отчетов.Отчеты удобно использовать и самому руководителю проекта, поскольку с помощью некоторых из них можно получить данные, которые невозможно просмотреть в представлениях. Например, с помощью одного из отчетов.`"
+                  )
 </template>
 
 <script>
 import MainLayout from "@/layouts/MainLayout";
-import MainSlider from "../components/MainSlider";
+import MainSlider from "@/components/MainSlider";
+import StatisticCard from "@/components/Statistic/StatisticCard";
 
 export default {
   components: {
     MainLayout,
-    MainSlider
+    MainSlider,
+    StatisticCard
   }
 };
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>
