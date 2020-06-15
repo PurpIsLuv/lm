@@ -101,12 +101,11 @@ export default {
 <style lang="scss" scoped>
 @mixin main($maxWidth) {
   .MainProjectCard {
-    width: 570px;
-    height: 457px;
+    max-width: 555px;
+    min-height: 470px;
     border-radius: 10px;
     box-shadow: 2px 4px 10px rgba($color: $Black, $alpha: 0.1);
     background-color: $White;
-    margin: 20px 50px;
   }
   .MainProjectCard:hover .MainProjectCard-body,
   .MainProjectCard:hover .MainProjectCard-footer {
@@ -128,6 +127,12 @@ export default {
   //MainProjectCard-header
   .MainProjectCard-header {
     display: block;
+    position: relative;
+    // Fix margin problem
+    margin-top: -15px;
+    img {
+      width: 100%;
+    }
   }
   .title {
     margin-top: 1rem;
@@ -252,7 +257,7 @@ export default {
   }
   .MainProjectCard-graphic {
     display: none;
-    width: 570px;
+    width: 100%;
     height: 250px;
     overflow: hidden;
   }

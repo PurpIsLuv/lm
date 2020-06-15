@@ -13,11 +13,12 @@
     ul.categories-list
       category-project(v-for="filter in filters"
                       :title="filter.title"
-                      :img="filter.img")
+                      :img="filter.img"
+                      :key="index")
 </template>
 
 <script>
-import data from './data';
+import data from "./data";
 import CategoryProject from "./CategoryProject";
 
 export default {
@@ -54,7 +55,7 @@ export default {
   color: $White;
   font-size: 14px;
   font-weight: 450;
-  background: linear-gradient(180deg, #4770FC 0%, #4B9EF8 100%);
+  background: linear-gradient(180deg, #4770fc 0%, #4b9ef8 100%);
   border-radius: 3px;
   padding: 10px;
   min-width: 150px;
@@ -89,7 +90,11 @@ export default {
   border-radius: 3px;
 }
 .control-button.next {
-  background: linear-gradient(180deg, #F4F4F4 0%, rgba(244, 244, 244, 0.47) 100%);
+  background: linear-gradient(
+    180deg,
+    #f4f4f4 0%,
+    rgba(244, 244, 244, 0.47) 100%
+  );
   padding: 7px 30px;
 }
 // Categories List
