@@ -1,18 +1,17 @@
 <template lang="pug">
   main-layout
-    main-slider
+    main-create-project
 </template>
 
 <script>
 import MainLayout from "@/layouts/MainLayout";
-import MainSlider from "@/components/MainSlider";
+import MainCreateProject from "@/components/CreateProject/MainCreateProject";
 
 export default {
+  name: "CreateProject",
   components: {
     MainLayout,
-    MainSlider
+    MainCreateProject
   }
 };
 </script>
-
-<style lang="scss" scoped></style>
