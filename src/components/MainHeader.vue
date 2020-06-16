@@ -31,9 +31,9 @@ export default {
   data() {
     return {
       pages: [
-        { link: "/", title: "Главная" },
+        { link: "/main", title: "Главная" },
         { link: "/about", title: "О проекте" },
-        { link: "/create", title: "Создать проект" },
+        { link: "/CreateProject", title: "Создать проект" },
         { link: "/partners", title: "Партнерам" },
         { link: "/clients", title: "Участникам" },
         { link: "/projects", title: "Проекты" },
