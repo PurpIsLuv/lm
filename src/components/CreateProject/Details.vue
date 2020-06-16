@@ -75,6 +75,8 @@ export default {
     box-sizing: border-box;
   }
   .Details {
+    display: flex;
+    justify-content: center;
     margin: 2rem 0;
   }
   .row {
