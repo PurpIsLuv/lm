@@ -36,6 +36,7 @@
                 autocomplete="off"
                 id="header__input"
                 :disabled="currentStep == 3"
+                v-model="projectName"
               ) 
             .header-params-item(
               @click="toggleSelect = !toggleSelect"
@@ -62,6 +63,8 @@
             ) {{ item }}
           component(
             :is="stepsComponent[currentStep]"
+            :parentData="parentData(currentStep)"
+            @changeData="updateData"
           ) 
         .footer(
           :class="{ default__opacity: currentStep == 3 }"
@@ -94,14 +97,21 @@ export default {
   name: "CreateProjectForm",
   data() {
     return {
-      coverImage: new Object(),
       toggleSelect: false,
       //Перенести в пропс
       industryArr: ["Медицина", "Религия", "Образование", "Новые технологии"],
-      currentIndustry: "",
       steps: ["Основные данные", "Детали", "Вознаграждение"],
       stepsComponent: [BasicData, Details, Bonus, Success],
-      currentStep: 0
+      currentStep: 0,
+      //данные формы
+      coverImage: new Object(), //обложка
+      projectName: "", //название проекта
+      currentIndustry: "", //отрасль деятельности
+      shortDescription: "", // короткое описание
+      country: "", //страна
+      choiceDate: "", // срок исполнения
+      longDescription: "", // полное описание
+      bosusArr: [] //бонусы
     };
   },
   methods: {
@@ -122,12 +132,6 @@ export default {
       this.$refs.cover.src = this.coverImage;
     },
     /**
-     * Отправка формы
-     */
-    sendFormData() {
-      alert("sendFormData");
-    },
-    /**
      *  Изменение отрасли деятельности
      */
     changeIndustry(index) {
@@ -137,20 +141,19 @@ export default {
      *  Стилизация заголовка шага
      */
     styledCurrentStep(index) {
-      this.$refs[`step-${index}`][0].classList.add("active");
+      if (this.currentStep != 3) {
+        this.$refs[`step-${index}`][0].classList.add("active");
+      }
     },
     /**
      *  Следующий шаг
      */
     nextStep() {
-      if (this.currentStep < this.stepsComponent.length - 1) {
-        this.$refs[`step-${this.currentStep}`][0].classList.remove("active"); //Удаление класса у пред.шага
-        this.currentStep++; //след шаг
-        this.styledCurrentStep(this.currentStep); //стилизация шага
-      } else if (this.currentStep == this.stepsComponent.length - 1) {
-        this.$refs[`step-${this.currentStep}`][0].classList.remove("active");
-        this.currentStep = 0;
-        this.styledCurrentStep(this.currentStep);
+      this.$refs[`step-${this.currentStep}`][0].classList.remove("active"); //Удаление класса у пред.шага
+      this.currentStep++; //след шаг
+      this.styledCurrentStep(this.currentStep);
+      if (this.currentStep == 3) {
+        //тут post
         alert("Request");
       }
     },
@@ -158,6 +161,40 @@ export default {
       this.$refs[`step-${this.currentStep}`][0].classList.remove("active");
       this.currentStep--;
       this.styledCurrentStep(this.currentStep);
+    },
+    //данные для передечи в дочерние компоненты
+    parentData(currentStep) {
+      switch (currentStep) {
+        case 0:
+          return {
+            countrys: ["Россия", "Абхазия", "Австралия", "Австрия"]
+          };
+      }
+    },
+    //обновление данных из дочернего компонента
+    updateData(obj) {
+      if (obj.key == "shortDescription") {
+        this.shortDescription = obj.value;
+      } else if (obj.key == "country") {
+        this.country = obj.value;
+      } else if (obj.key == "choiceDate") {
+        this.choiceDate = obj.value;
+      } else if (obj.key == "longDescription") {
+        this.longDescription = obj.value;
+      } else if (obj.key == "bosusArr") {
+        this.bosusArr = obj.value;
+      }
+      // DEBUG
+      // console.log({
+      //   coverImage: this.coverImage,
+      //   projectName: this.projectName,
+      //   industry: this.currentIndustry,
+      //   shortDescription: this.shortDescription,
+      //   country: this.country,
+      //   choiceDate: this.choiceDate,
+      //   longDescription: this.longDescription,
+      //   bosusArr: this.bosusArr
+      // });
     }
   },
   mounted() {

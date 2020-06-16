@@ -6,7 +6,7 @@
     )
     .Success__title Ваш проект успешно оформлен и находится на рассмотрении!
     .Success__subtitle За статусом проекта следите в личном кабинете.
-    button.Success__button Готово
+    router-link(to="/main").Success__button Готово
 </template>
 
 <script>
@@ -50,6 +50,9 @@ export default {
     color: $StatText;
   }
   .Success__button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin-top: 2rem;
     width: 152px;
     height: 34px;

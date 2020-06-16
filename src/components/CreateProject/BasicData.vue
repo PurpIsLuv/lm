@@ -8,12 +8,11 @@
         .item__textarea(
           id="textarea"
           ref="textareaWrapper"
-          @keyup="resizeTextarea"
+          @keyup="changeTextArea"
         )
           .textarea(
             contentEditable="true"
             ref="textarea"
-            v-model="description"
           )
     .row
       .addImage
@@ -71,7 +70,7 @@
           @click="toggleSelect = !toggleSelect"
         )
           li.options__item(
-            v-for="(item, index) of countrys" :key="index"
+            v-for="(item, index) of parentData.countrys" :key="index"
             @click="changeCountry(index)"
           )
             .options__text {{ item }}
@@ -85,24 +84,32 @@
           id="budget"
           autocomplete="off"
           v-model="budget"
-          @change="formatterBudget"
+          @change="changeBudget"
         )
     .row
-      calendar   
+      calendar(
+        @updCalendar="transferCalendarDate"
+      )
 </template>
 
 <script>
 import Calendar from "@/components/CreateProject/Calendar";
 
 export default {
+  props: {
+    parentData: new Object()
+    /**
+     * parentData: {
+     *    countrys: new Array()
+     * }
+     */
+  },
   components: {
     Calendar
   },
   name: "BasicData",
   data() {
     return {
-      description: "",
-      countrys: ["Россия", "Абхазия", "Австралия", "Австрия"],
       currentCountry: "",
       toggleSelect: false,
       budget: "",
@@ -115,8 +122,21 @@ export default {
         this.toggleSelect = !this.toggleSelect;
       }
     },
+    //все изменения в текстареа
+    changeTextArea() {
+      this.resizeTextarea();
+      this.updTextAreaValue();
+    },
+    //изменение значения в текстареа
+    updTextAreaValue() {
+      const textarea = this.$refs["textarea"];
+      this.$emit("changeData", {
+        key: "shortDescription",
+        value: textarea.innerHTML
+      });
+    },
     /**
-     *  изменение высоты поля_для_текста
+     *  изменение высоты в текстареа
      **/
     resizeTextarea() {
       const textareaWrapper = this.$refs["textareaWrapper"];
@@ -125,16 +145,26 @@ export default {
       textareaWrapper.style.height =
         textarea.getBoundingClientRect().height + 41 + "px";
       item.style.height = textareaWrapper.getBoundingClientRect().height + "px";
-      // if (textarea.scrollTop > 0) {
-      //   textarea.style.height = textarea.scrollHeight + "px";
-      //   item.style.height = textarea.scrollHeight + 18 * 2 + 18 / 3 + "px";
-      // }
     },
     /**
      *  изменение текущей страны для селекта
      **/
     changeCountry(index) {
-      this.currentCountry = this.countrys[index];
+      this.currentCountry = this.parentData.countrys[index];
+      this.$emit("changeData", {
+        key: "country",
+        value: this.currentCountry
+      });
+    },
+    /**
+     *  все изменения в инпуте с бюджетом
+     **/
+    changeBudget() {
+      this.formatterBudget();
+      this.$emit("changeData", {
+        key: "budget",
+        value: this.budget
+      });
     },
     /**
      *  преобразование строки в число с валютой
@@ -157,6 +187,11 @@ export default {
         const fileURL = URL.createObjectURL(file);
         this.loadImages.push(fileURL);
       });
+      //перенос в родительский компонент
+      this.$emit("changeData", {
+        key: "loadImages",
+        value: this.loadImages
+      });
     },
     /**
      *  слайдер
@@ -169,6 +204,20 @@ export default {
      **/
     deleteImage(index) {
       this.loadImages.splice(index, 1);
+      //перенос в родительский компонент
+      this.$emit("changeData", {
+        key: "loadImages",
+        value: this.loadImages
+      });
+    },
+    /**
+     *  передача даты из календаря
+     **/
+    transferCalendarDate({ key, value }) {
+      this.$emit("changeData", {
+        key,
+        value
+      });
     }
   },
   created() {

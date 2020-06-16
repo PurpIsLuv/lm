@@ -16,6 +16,8 @@
         textarea.description__textarea(
           id="description"
           ref="description"
+          v-model="description"
+          @change="transferDescription"
         )
 </template>
 
@@ -34,7 +36,8 @@ export default {
         "Text-justify",
         "List",
         "AddFile"
-      ]
+      ],
+      description: ""
     };
   },
   methods: {
@@ -62,6 +65,15 @@ export default {
         element.classList.remove(this.descriptionStyles[i]);
       }
       element.classList.add(this.descriptionStyles[index]);
+    },
+    /**
+     * Передача полного описания
+     */
+    transferDescription() {
+      this.$emit("changeData", {
+        key: "longDescription",
+        value: this.description
+      });
     }
   }
 };

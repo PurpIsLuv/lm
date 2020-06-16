@@ -13,12 +13,14 @@
             v-model="item.total"
             @change="formatterTotal(index)"
             placeholder="Введите сумму инвестиций"
+            
           )
         .element
           input.element__input(
             autocomplete="off"
             v-model="item.bonus"
             placeholder="Введите вознаграждение"
+            @change="transferBonusArr"
           )
           .element__button(
             @click="removeBonus(index)"
@@ -90,6 +92,12 @@ export default {
       this.checkRadio == true
         ? this.bonusArr.splice(0, this.bonusArr.length)
         : () => {};
+    },
+    transferBonusArr() {
+      this.$emit('changeData', {
+        key: "bonusArr",
+        value: this.bonusArr
+      })
     }
   }
 };
