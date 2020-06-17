@@ -200,6 +200,10 @@ export default {
       this.choiceDate.setMonth(this.currentDate.getMonth());
       this.choiceDate.setFullYear(this.currentDate.getFullYear());
       this.toggleCalendar = !this.toggleCalendar;
+      this.$emit("updCalendar", {
+        key: "choiceDate",
+        value: this.choiceDate
+      });
     }
   },
   mounted() {
