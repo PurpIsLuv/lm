@@ -31,7 +31,7 @@ production:
       - aws configure set aws_access_key_id "$ACCESS_KEY_ID"
       - aws configure set aws_secret_access_key "$SECRET_ACCESS_KEY"
       - aws configure set default.region "$REGION"
-      - aws --endpoint-url=https://storage.yandexcloud.net s3 rm s3://www.leadersmanagement.com --recursive
-      - aws --endpoint-url=https://storage.yandexcloud.net s3 sync ./dist/ s3://www.leadersmanagement.com
+      - aws --endpoint-url=https://storage.yandexcloud.net s3 rm s3://test.leadersmanagement.com --recursive
+      - aws --endpoint-url=https://storage.yandexcloud.net s3 sync ./dist/ s3://test.leadersmanagement.com
       - echo "end"
 
