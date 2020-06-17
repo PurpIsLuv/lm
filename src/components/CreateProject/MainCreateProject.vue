@@ -169,6 +169,10 @@ export default {
           return {
             countrys: ["Россия", "Абхазия", "Австралия", "Австрия"]
           };
+        case 1:
+          return {
+            description: this.longDescription
+          };
       }
     },
     //обновление данных из дочернего компонента

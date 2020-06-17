@@ -94,10 +94,10 @@ export default {
         : () => {};
     },
     transferBonusArr() {
-      this.$emit('changeData', {
+      this.$emit("changeData", {
         key: "bonusArr",
         value: this.bonusArr
-      })
+      });
     }
   }
 };

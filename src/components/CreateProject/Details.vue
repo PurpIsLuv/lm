@@ -12,17 +12,28 @@
                 :src="require(`@/assets/image/CreateProject/${item}.svg`)"
                 alt=""
               )
+            .addImage__container
+              img.item__img(src="@/assets/image/CreateProject/AddFile.svg" alt="")
+              input.addImage__input(
+                type="file"
+                id="addImageId"
+                accept=".png, .jpg, .jpeg"
+                multiple
+                @change="loadFiles"
+              )
       .description-body
-        textarea.description__textarea(
+        .description__textarea(
+          contenteditable=true
           id="description"
           ref="description"
-          v-model="description"
-          @change="transferDescription"
-        )
+          ) {{ description }}
 </template>
 
 <script>
 export default {
+  props: {
+    parentData: new Object()
+  },
   name: "Details",
   data() {
     return {
@@ -34,11 +45,14 @@ export default {
         "Text-center",
         "Text-right",
         "Text-justify",
-        "List",
-        "AddFile"
+        "List"
       ],
-      description: ""
+      description: this.parentData.description,
+      loadImages: []
     };
+  },
+  mounted() {
+    this.$refs["description"].innerHTML = this.description;
   },
   methods: {
     /**
@@ -56,6 +70,43 @@ export default {
           ? () => {}
           : this.addTextAlignDescription(index, description);
       }
+
+      //Логика для List
+      if (index === 7) {
+        //Создаем список
+        const list = document.createElement("ul");
+        const item = document.createElement("li");
+        const br = document.createElement("br");
+
+        //FIX under
+        list.style.padding = "0";
+        list.style.margin = "5px 0";
+
+        //Собираем
+        list.append(item);
+        description.append(list);
+        description.append(br);
+      }
+    },
+    /**
+     * Логика для картинок
+     */
+    loadFiles(event) {
+      // Загрузка фото
+      this.loadImages = [];
+      event.srcElement.files.forEach(file => {
+        const fileURL = URL.createObjectURL(file);
+        this.loadImages.push(fileURL);
+      });
+
+      //Создание img
+      const photo = document.createElement("img");
+      photo.src = this.loadImages[0];
+      photo.alt = "";
+      photo.style.width = "30%";
+
+      //Вставка в текст
+      this.$refs["description"].append(photo);
     },
     /**
      * Добавление 1-го из 4 стилей
@@ -72,7 +123,7 @@ export default {
     transferDescription() {
       this.$emit("changeData", {
         key: "longDescription",
-        value: this.description
+        value: this.$refs["description"].innerHTML
       });
     }
   }
@@ -131,6 +182,20 @@ export default {
   .item__button:focus {
     outline: none;
   }
+  .addImage__container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin: 0 0.5rem;
+  }
+  .addImage__input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+  }
   .description-body {
     display: flex;
     justify-content: center;
@@ -148,17 +213,17 @@ export default {
     box-shadow: 2px 4px 10px rgba($color: #000000, $alpha: 0.1);
   }
   .description__textarea {
-    width: 720px;
-    height: 350px;
-    border: none;
+    width: 100%;
+    height: 100%;
+    padding: 25px;
+    cursor: text;
     @include afs(18px, 16px, 14px);
     font-family: Futura PT;
     font-style: normal;
     font-weight: 500;
     line-height: 28px;
     color: $Main;
-    resize: none;
-    overflow: hidden;
+    overflow-y: scroll;
   }
   .description__textarea:focus {
     outline: none;
