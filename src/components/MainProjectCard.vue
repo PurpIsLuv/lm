@@ -44,14 +44,16 @@
           br
           .price {{ (total - sum) | rubFormatter }}  {{ percentLeft }}
     .MainProjectCard-graphic
-      img(
-        src='../assets/image/ProjectCard/graphic.png'
-        alt=''
-      )
+      linear-chart-small
 </template>
 
 <script>
+import LinearChartSmall from "@/components/Charts/LinearChartSmall";
+
 export default {
+  components: {
+    LinearChartSmall
+  },
   name: "MainProjectCard",
   data() {
     return {
