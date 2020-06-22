@@ -52,12 +52,12 @@ export default {
   },
   methods: {
     sendQuestion() {
-      console.log({
-        name: this.name,
-        email: this.email,
-        checkbox: this.checkbox,
-        message: this.message
-      });
+      // console.log({
+      //   name: this.name,
+      //   email: this.email,
+      //   checkbox: this.checkbox,
+      //   message: this.message
+      // });
     }
   }
 };

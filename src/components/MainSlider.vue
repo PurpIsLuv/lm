@@ -49,7 +49,7 @@ export default {
   },
   methods: {
     submit() {
-      console.log(this.target);
+      // console.log(this.target);
     },
     changeSlide(id) {
       this.slideId = id;

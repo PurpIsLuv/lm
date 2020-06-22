@@ -26,6 +26,7 @@
           contenteditable=true
           id="description"
           ref="description"
+          @keyup="transferDescription"
           ) {{ description }}
 </template>
 
@@ -87,6 +88,8 @@ export default {
         description.append(list);
         description.append(br);
       }
+
+      this.transferDescription();
     },
     /**
      * Логика для картинок
@@ -107,6 +110,8 @@ export default {
 
       //Вставка в текст
       this.$refs["description"].append(photo);
+
+      this.transferDescription();
     },
     /**
      * Добавление 1-го из 4 стилей
