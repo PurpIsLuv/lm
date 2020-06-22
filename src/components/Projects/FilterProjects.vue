@@ -11,7 +11,7 @@
         button.control-button.next
           img.control-icon(src="@/assets/svg/next-arrow.svg" alt="")
     ul.categories-list
-      category-project(v-for="filter in filters"
+      category-project(v-for="(filter, index) in filters"
                       :title="filter.title"
                       :img="filter.img"
                       :key="index")

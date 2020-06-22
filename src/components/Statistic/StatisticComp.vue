@@ -30,16 +30,16 @@
               alt=""
             )
           .graphic__image
-            img(
-              src="@/assets/image/Statistic/graphic.png"
-              alt=""
-              width="570px"
-            )
+            linear-chart-medium
           .graphic__square
 </template>
 
 <script>
+import LinearChartMedium from "@/components/Charts/LinearChartMedium";
 export default {
+  components: {
+    LinearChartMedium
+  },
   name: "StatisticComp"
 };
 </script>
@@ -142,10 +142,11 @@ export default {
     margin-left: 8rem;
   }
   .graphic__image {
-    margin-left: -2rem;
+    margin-left: -4rem;
     position: absolute;
-    width: 570px;
-    height: 421px;
+    width: 566px;
+    height: 425px;
+    background-color: $White;
     overflow: hidden;
     z-index: 1;
   }
