@@ -1,0 +1,14 @@
+{
+  "logo__leader": "Лидеры",
+  "logo_managment": "Управления",
+  "langs": ["RU", "EN"],
+  "enter": "Вход",
+  "reg": "Регистрация",
+  "main": "Главная",
+  "about": "О проекте",
+  "createProject": "Создать проект",
+  "partners": "Партнерам",
+  "clients": "Участникам",
+  "projects": "Проекты",
+  "contacts": "Контакты"
+}

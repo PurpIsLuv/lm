@@ -2,8 +2,8 @@ import Vue from "vue";
 import VueI18n from "vue-i18n";
 
 //Language import
-import ru from "./langs/ru";
-import en from "./langs/en.json";
+import ru from "./langs/ru/ru";
+import en from "./langs/en/en";
 
 Vue.use(VueI18n);
 

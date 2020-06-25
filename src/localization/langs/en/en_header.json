@@ -1,0 +1,14 @@
+{
+  "logo__leader": "Leaders",
+  "logo_managment": "Managment",
+  "langs": ["RU", "EN"],
+  "enter": "Sign Up",
+  "reg": "Registration",
+  "main": "Main",
+  "about": "About project",
+  "createProject": "Create project",
+  "partners": "Partners",
+  "clients": "Clients",
+  "projects": "Projects",
+  "contacts": "Contacts"
+}

@@ -2,9 +2,9 @@
   .container.header
     a.logo(href="/")
       img.logo-icon(src="@/assets/logo/logo.svg")
-      p.logo-name Лидеры
+      p.logo-name {{ $t("logo__leader") }}
         br
-        span.logo-name_span Управления
+        span.logo-name_span {{ $t("logo_managment") }}
     .right
       .top
         .contacts
@@ -15,31 +15,23 @@
             img.contact-icon(src="@/assets/svg/mail.svg")
             a.contact-href(href="mailto:max@mail.ru") max@mail.ru
         select.lang
-          option(value="RU" selected) RU
-          option(value="EN") EN
-        button.auth-btn Вход
-        button.auth-btn Регистрация
+          option(value="RU" selected) {{ $t("langs[0]") }}
+          option(value="EN") {{ $t("langs[1]") }}
+        button.auth-btn {{ $t("enter") }}
+        button.auth-btn {{ $t("reg") }}
       .bottom
         nav.menu
           ul
-            li.menu-li(v-for="page in pages")
+            li.menu-li(v-for="page in getNavigationPages()")
               router-link.menu-link(:to="page.link") {{ page.title }}
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
-  data() {
-    return {
-      pages: [
-        { link: "/main", title: "Главная" },
-        { link: "/about", title: "О проекте" },
-        { link: "/CreateProject", title: "Создать проект" },
-        { link: "/partners", title: "Партнерам" },
-        { link: "/clients", title: "Участникам" },
-        { link: "/projects", title: "Проекты" },
-        { link: "/contacts", title: "Контакты" }
-      ]
-    };
+  methods: {
+    ...mapGetters(["getNavigationPages"])
   }
 };
 </script>
