@@ -15,7 +15,7 @@
 
 <script>
 export default {
-  name: 'StatisticGraph',
+  name: "StatisticGraph",
   props: {
     successful: {
       type: Number,
@@ -44,7 +44,7 @@ export default {
   align-items: center;
   justify-content: space-between;
   padding: 40px;
-  background: #FFFFFF;
+  background: $White;
   box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
 }
@@ -67,7 +67,7 @@ export default {
   display: flex;
   align-items: center;
   &:before {
-    content: '';
+    content: "";
     width: 20px;
     float: left;
     height: 20px;
