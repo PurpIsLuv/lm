@@ -2,9 +2,9 @@ export default {
   state: {
     pages: [
       { link: "/main", title: "main" },
-      { link: "/about", title: "about" },
+      { link: "/about", title: "aboutProject" },
       { link: "/CreateProject", title: "createProject" },
-      { link: "/partners", title: "partners" },
+      { link: "/partners", title: "toPartners" },
       { link: "/clients", title: "clients" },
       { link: "/projects", title: "projects" },
       { link: "/contacts", title: "contacts" }
@@ -25,7 +25,7 @@ export default {
         ]
       },
       {
-        title: "about",
+        title: "aboutUs",
         subtitles: [
           { link: "#", subtitle: "specialProject" },
           { link: "#", subtitle: "partners" },
