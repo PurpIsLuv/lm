@@ -5,32 +5,32 @@
         .Footer-item
           img.title__img(src='@/assets/image/Footer/Logo.svg')
           .subtitle
-            | Автоинформатор:
+            | {{ $t("autoinformator") }}:
             br
             | +7 (495) 181-05-05
 
         footer-item(
-          v-for="(item, index) of footerItem" 
+          v-for="(item, index) of getLinksItem()" 
           :key="index" 
           :title='item.title' 
           :subtitles='item.subtitles'
         )
 
         .Footer-item
-          .title Подпишитесь на наши рассылку:
+          .title {{ $t("subscribe") }}:
           label.subtitle-message
             img(src='@/assets/image/Footer/Message.svg')
             input.subtitle-message__input(
               type='text' 
-              placeholder='Укажите свой email'
+              :placeholder="$t('yourEmail')"
               v-model="inputValue"
             )
       .row
-        .license @ 2020 Все права защищены
+        .license @ 2020 {{ $t("license") }}
         .links
           a.links__a(
             href='#' 
-            v-for="(item, index) of links" 
+            v-for="(item, index) of getLinksSocial()" 
             :key="index"
           )
             img.links__img(
@@ -40,6 +40,9 @@
 
 <script>
 import FooterItem from "./FooterItem";
+
+import { mapGetters } from "vuex";
+
 export default {
   components: {
     FooterItem
@@ -48,40 +51,11 @@ export default {
   data() {
     return {
       defaultImgPath: "assets/image/Footer/",
-      links: [
-        { name: "Facebook", link: "#" },
-        { name: "Twitter", link: "#" },
-        { name: "Gmail", link: "#" },
-        { name: "Instagram", link: "#" }
-      ],
-      footerItem: [
-        {
-          title: "НАШИ ПРОЕКТЫ",
-          subtitles: [
-            { link: "#", subtitle: "Сайт деловых знакомств" },
-            { link: "#", subtitle: "Глобальная игра" },
-            { link: "#", subtitle: "Благотворительность" }
-          ]
-        },
-        {
-          title: "О НАС",
-          subtitles: [
-            { link: "#", subtitle: "Спецпроекты" },
-            { link: "#", subtitle: "Партнеры" },
-            { link: "#", subtitle: "Контакты" }
-          ]
-        },
-        {
-          title: "ПОМОЩЬ",
-          subtitles: [
-            { link: "#", subtitle: "Частые вопросы" },
-            { link: "#", subtitle: "Правила сервиса" },
-            { link: "#", subtitle: "Задать вопрос" }
-          ]
-        }
-      ],
       inputValue: ""
     };
+  },
+  methods: {
+    ...mapGetters(["getLinksSocial", "getLinksItem"])
   }
 };
 </script>

@@ -22,7 +22,7 @@
       .bottom
         nav.menu
           ul
-            li.menu-li(v-for="page in pages")
+            li.menu-li(v-for="page in getNavigationPages()")
               router-link.menu-link(:to="page.link") {{ $t(page.title) }}
 </template>
 
@@ -30,16 +30,8 @@
 import { mapGetters } from "vuex";
 
 export default {
-  data() {
-    return {
-      pages: []
-    };
-  },
   methods: {
     ...mapGetters(["getNavigationPages"])
-  },
-  mounted() {
-    this.pages = this.getNavigationPages();
   }
 };
 </script>

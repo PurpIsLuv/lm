@@ -1,9 +1,9 @@
 <template lang="pug">
   .Footer-item
-    .title {{ title }} 
+    .title {{ $t(title) }} 
     .subtitle(v-for="(item, index) of subtitles" 
     :key="index") 
-      a.subtitle__a(:href='item.link') {{ item.subtitle }}
+      a.subtitle__a(:href='item.link') {{ $t(item.subtitle) }}
 </template>
 
 <script>
