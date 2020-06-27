@@ -4,13 +4,11 @@
 </template>
 
 <script>
-import MainLayout from "@/layouts/MainLayout";
 import MainFreelance from "@/components/Freelance/MainFreelance";
 
 export default {
   name: "Freelance",
   components: {
-    MainLayout,
     MainFreelance
   }
 };

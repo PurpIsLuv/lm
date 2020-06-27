@@ -4,12 +4,10 @@
 </template>
 
 <script>
-import MainLayout from "@/layouts/MainLayout";
 import MainSlider from "@/components/MainSlider";
 
 export default {
   components: {
-    MainLayout,
     MainSlider
   }
 };
